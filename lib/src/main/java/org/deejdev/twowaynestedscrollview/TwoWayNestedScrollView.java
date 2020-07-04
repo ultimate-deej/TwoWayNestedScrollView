@@ -17,8 +17,6 @@
 
 package org.deejdev.twowaynestedscrollview;
 
-import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP_PREFIX;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -62,6 +60,8 @@ import androidx.core.widget.EdgeEffectCompat;
 
 import java.util.List;
 
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP_PREFIX;
+
 /**
  * TwoWayNestedScrollView is just like {@link android.widget.ScrollView}, but it supports acting
  * as both a nested scrolling parent and child on both new and old versions of Android.
@@ -95,7 +95,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
          * @param oldScrollY Previous vertical scroll origin.
          */
         void onScrollChange(TwoWayNestedScrollView v, int scrollX, int scrollY,
-                            int oldScrollX, int oldScrollY);
+                int oldScrollX, int oldScrollY);
     }
 
     private long mLastScroll;
@@ -196,7 +196,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
     }
 
     public TwoWayNestedScrollView(@NonNull Context context, @Nullable AttributeSet attrs,
-                                  int defStyleAttr) {
+            int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initScrollView();
 
@@ -451,7 +451,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
 
     /**
      * @return The maximum amount this scroll view will scroll in response to
-     *   an arrow event.
+     * an arrow event.
      */
     public int getMaxScrollAmount() {
         return (int) (MAX_SCROLL_FACTOR * getHeight());
@@ -535,7 +535,6 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
      * Indicates whether this ScrollView's content is stretched to fill the viewport.
      *
      * @return True if the content fills the viewport, false otherwise.
-     *
      * @attr name android:fillViewport
      */
     public boolean isFillViewport() {
@@ -546,8 +545,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
      * Set whether this ScrollView should stretch its content height to fill the viewport or not.
      *
      * @param fillViewport True to stretch the content's height to the viewport's
-     *        boundaries, false otherwise.
-     *
+     * boundaries, false otherwise.
      * @attr name android:fillViewport
      */
     public void setFillViewport(boolean fillViewport) {
@@ -566,6 +564,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
 
     /**
      * Set whether arrow scrolling will animate its transition.
+     *
      * @param smoothScrollingEnabled whether arrow scrolling will animate its transition
      */
     public void setSmoothScrollingEnabled(boolean smoothScrollingEnabled) {
@@ -722,10 +721,10 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
          */
 
         /*
-        * Shortcut the most recurring case: the user is in the dragging
-        * state and he is moving his finger.  We want to intercept this
-        * motion.
-        */
+         * Shortcut the most recurring case: the user is in the dragging
+         * state and he is moving his finger.  We want to intercept this
+         * motion.
+         */
         final int action = ev.getAction();
         if ((action == MotionEvent.ACTION_MOVE) && mIsBeingDragged) {
             return true;
@@ -739,9 +738,9 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
                  */
 
                 /*
-                * Locally do absolute value. mLastMotionY is set to the y value
-                * of the down event.
-                */
+                 * Locally do absolute value. mLastMotionY is set to the y value
+                 * of the down event.
+                 */
                 final int activePointerId = mActivePointerId;
                 if (activePointerId == INVALID_POINTER) {
                     // If we don't have a valid id, the touch down wasn't on content.
@@ -794,7 +793,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
                  * otherwise don't. mScroller.isFinished should be false when
                  * being flinged. We need to call computeScrollOffset() first so that
                  * isFinished() is correct.
-                */
+                 */
                 mScroller.computeScrollOffset();
                 mIsBeingDragged = !mScroller.isFinished();
                 startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL, ViewCompat.TYPE_TOUCH);
@@ -818,9 +817,9 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
         }
 
         /*
-        * The only time we want to intercept motion events is if we are in the
-        * drag mode.
-        */
+         * The only time we want to intercept motion events is if we are in the
+         * drag mode.
+         */
         return mIsBeingDragged;
     }
 
@@ -1133,14 +1132,14 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
      * </p>
      *
      * @param topFocus look for a candidate is the one at the top of the bounds
-     *                 if topFocus is true, or at the bottom of the bounds if topFocus is
-     *                 false
-     * @param top      the top offset of the bounds in which a focusable must be
-     *                 found
-     * @param bottom   the bottom offset of the bounds in which a focusable must
-     *                 be found
+     * if topFocus is true, or at the bottom of the bounds if topFocus is
+     * false
+     * @param top the top offset of the bounds in which a focusable must be
+     * found
+     * @param bottom the bottom offset of the bounds in which a focusable must
+     * be found
      * @return the next focusable component in the bounds or null if none can
-     *         be found
+     * be found
      */
     private View findFocusableViewInBounds(boolean topFocus, int top, int bottom) {
 
@@ -1216,8 +1215,8 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
      * focus.</p>
      *
      * @param direction the scroll direction: {@link android.view.View#FOCUS_UP}
-     *                  to go one page up or
-     *                  {@link android.view.View#FOCUS_DOWN} to go one page down
+     * to go one page up or
+     * {@link android.view.View#FOCUS_DOWN} to go one page down
      * @return true if the key event is consumed by this method, false otherwise
      */
     public boolean pageScroll(int direction) {
@@ -1254,8 +1253,8 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
      * focus.</p>
      *
      * @param direction the scroll direction: {@link android.view.View#FOCUS_UP}
-     *                  to go the top of the view or
-     *                  {@link android.view.View#FOCUS_DOWN} to go the bottom
+     * to go the top of the view or
+     * {@link android.view.View#FOCUS_DOWN} to go the bottom
      * @return true if the key event is consumed by this method, false otherwise
      */
     public boolean fullScroll(int direction) {
@@ -1285,9 +1284,9 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
      * the new visible area, the focus is reclaimed by this ScrollView.</p>
      *
      * @param direction the scroll direction: {@link android.view.View#FOCUS_UP}
-     *                  to go upward, {@link android.view.View#FOCUS_DOWN} to downward
-     * @param top       the top offset of the new area to be made visible
-     * @param bottom    the bottom offset of the new area to be made visible
+     * to go upward, {@link android.view.View#FOCUS_DOWN} to downward
+     * @param top the top offset of the new area to be made visible
+     * @param bottom the bottom offset of the new area to be made visible
      * @return true if the key event is consumed by this method, false otherwise
      */
     private boolean scrollAndFocus(int direction, int top, int bottom) {
@@ -1319,7 +1318,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
      * Handle scrolling in response to an up or down arrow click.
      *
      * @param direction The direction corresponding to the arrow key that was
-     *                  pressed
+     * pressed
      * @return True if we consumed the event, false otherwise
      */
     public boolean arrowScroll(int direction) {
@@ -1374,7 +1373,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
 
     /**
      * @return whether the descendant of this scroll view is scrolled off
-     *  screen.
+     * screen.
      */
     private boolean isOffScreen(View descendant) {
         return !isWithinDeltaOfScreen(descendant, 0, getHeight());
@@ -1382,7 +1381,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
 
     /**
      * @return whether the descendant of this scroll view is within delta
-     *  pixels of being on the screen.
+     * pixels of being on the screen.
      */
     private boolean isWithinDeltaOfScreen(View descendant, int delta, int height) {
         descendant.getDrawingRect(mTempRect);
@@ -1417,7 +1416,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
         smoothScrollBy(dx, dy, DEFAULT_SMOOTH_SCROLL_DURATION, false);
     }
 
-   /**
+    /**
      * Like {@link View#scrollBy}, but scroll smoothly instead of immediately.
      *
      * @param dx the number of pixels to scroll by on the X axis
@@ -1510,6 +1509,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
     /**
      * <p>The scroll range of a scroll view is the overall height of all of its
      * children.</p>
+     *
      * @hide
      */
     @RestrictTo(LIBRARY_GROUP_PREFIX)
@@ -1697,7 +1697,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
      * If rect is off screen, scroll just enough to get it (or at least the
      * first screen size chunk of it) on screen.
      *
-     * @param rect      The rectangle.
+     * @param rect The rectangle.
      * @param immediate True to scroll immediately without animation
      * @return true if scrolling was performed
      */
@@ -1802,7 +1802,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
     /**
      * When looking for focus in children of a scroll view, need to be a little
      * more careful not to give focus to something that is scrolled off screen.
-     *
+     * <p>
      * This is more expensive than the default {@link android.view.ViewGroup}
      * implementation, otherwise this behavior might have been made the default.
      */
@@ -1821,7 +1821,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
         final View nextFocus = previouslyFocusedRect == null
                 ? FocusFinder.getInstance().findNextFocus(this, null, direction)
                 : FocusFinder.getInstance().findNextFocusFromRect(
-                        this, previouslyFocusedRect, direction);
+                this, previouslyFocusedRect, direction);
 
         if (nextFocus == null) {
             return false;
@@ -1931,8 +1931,8 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
      * Fling the scroll view
      *
      * @param velocityY The initial velocity in the Y direction. Positive
-     *                  numbers mean that the finger/cursor is moving down the screen,
-     *                  which means we want to scroll towards the top.
+     * numbers mean that the finger/cursor is moving down the screen,
+     * which means we want to scroll towards the top.
      */
     public void fling(int velocityY) {
         if (getChildCount() > 0) {
@@ -2124,16 +2124,16 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
 
         public static final Parcelable.Creator<SavedState> CREATOR =
                 new Parcelable.Creator<SavedState>() {
-            @Override
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
+                    @Override
+                    public SavedState createFromParcel(Parcel in) {
+                        return new SavedState(in);
+                    }
 
-            @Override
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
+                    @Override
+                    public SavedState[] newArray(int size) {
+                        return new SavedState[size];
+                    }
+                };
     }
 
     static class AccessibilityDelegate extends AccessibilityDelegateCompat {
