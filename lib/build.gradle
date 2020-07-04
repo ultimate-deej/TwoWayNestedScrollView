@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+version '0.1'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 29
+        versionCode 1
+        versionName version
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.3.0'
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier.set('sources')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId 'org.deejdev.twowaynestedscrollview'
+                from components.release
+                artifact sourcesJar
+            }
+        }
+    }
+}
