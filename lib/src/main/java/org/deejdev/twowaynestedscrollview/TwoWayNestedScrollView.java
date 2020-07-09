@@ -1046,13 +1046,13 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
                         final int pulledToX = oldX + deltaX;
                         if (pulledToX < 0) {
                             EdgeEffectCompat.onPull(mEdgeGlowLeft, (float) deltaX / getWidth(),
-                                    ev.getY(activePointerIndex) / getHeight());
+                                    1.f - ev.getY(activePointerIndex) / getHeight());
                             if (!mEdgeGlowRight.isFinished()) {
                                 mEdgeGlowRight.onRelease();
                             }
                         } else if (pulledToX > rangeX) {
                             EdgeEffectCompat.onPull(mEdgeGlowRight, (float) deltaX / getWidth(),
-                                    1.f - ev.getY(activePointerIndex)
+                                    ev.getY(activePointerIndex)
                                             / getHeight());
                             if (!mEdgeGlowLeft.isFinished()) {
                                 mEdgeGlowLeft.onRelease();
