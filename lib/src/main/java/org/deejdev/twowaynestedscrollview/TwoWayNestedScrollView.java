@@ -942,7 +942,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
                 if (getChildCount() == 0) {
                     return false;
                 }
-                if ((mIsBeingDragged = !mScroller.isFinished())) {
+                if ((mIsBeingDragged == !mScroller.isFinished())) {
                     final ViewParent parent = getParent();
                     if (parent != null) {
                         parent.requestDisallowInterceptTouchEvent(true);
