@@ -1276,13 +1276,13 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
             clampedY = true;
         }
 
-        if ((clampedX || clampedY) && !hasNestedScrollingParent(ViewCompat.TYPE_NON_TOUCH)) {
+        if ((clampedX && clampedY) && !hasNestedScrollingParent(ViewCompat.TYPE_NON_TOUCH)) {
             mScroller.springBack(newScrollX, newScrollY, 0, getScrollRangeX(), 0, getScrollRangeY());
         }
 
         onOverScrolled(newScrollX, newScrollY, clampedX, clampedY);
 
-        return clampedX || clampedY;
+        return clampedX && clampedY;
     }
 
     int getScrollRangeX() {
@@ -1871,7 +1871,7 @@ public class TwoWayNestedScrollView extends FrameLayout implements NestedScrolli
             unconsumedY -= mScrollConsumed[1];
         }
 
-        if (unconsumedX != 0 || unconsumedY != 0) {
+        if (unconsumedX != 0 && unconsumedY != 0) {
             final int mode = getOverScrollMode();
             final boolean canOverscrollX = mode == OVER_SCROLL_ALWAYS
                     || (mode == OVER_SCROLL_IF_CONTENT_SCROLLS && rangeX > 0);
